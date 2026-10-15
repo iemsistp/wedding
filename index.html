@@ -1,0 +1,1041 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Ashley & Tristan's wedding — September 25, 2027, Toronto, Ontario.">
+<title>Ashley &amp; Tristan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0c0b09;
+    --panel:#141210;
+    --panel-2:#1b1713;
+    --line: rgba(210,199,175,0.16);
+    --line-strong: rgba(210,199,175,0.3);
+    --bone:#ece4d3;
+    --parchment:#b7ab90;
+    --parchment-dim:#8c8270;
+    --gold:#b6935c;
+    --gold-bright:#d4b077;
+    --shadow: 0 30px 70px rgba(0,0,0,0.55);
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  /* Several elements below (form#rsvpForm, .field) set their own display
+     property, which otherwise silently overrides the browser's default
+     "hidden attribute means display:none" behavior — this guarantees
+     [hidden] always actually hides, regardless of other rules. */
+  [hidden]{ display:none !important; }
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+  body{
+    background: var(--ink);
+    color: var(--bone);
+    font-family: "EB Garamond", Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    padding-inline: 0;
+  }
+
+  h1,h2,h3, .display{
+    font-family: "Cormorant Garamond", "Times New Roman", serif;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+    margin: 0;
+    color: var(--bone);
+  }
+
+  .eyebrow{
+    font-family: "Jost", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 12.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+  }
+
+  a{ color: inherit; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{
+    width:100%;
+    max-width: 1180px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 64px);
+  }
+  .prose{
+    max-width: 620px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 6vw, 40px);
+  }
+
+  .rule{
+    width: 46px;
+    height: 1px;
+    background: var(--line-strong);
+    margin: 0 auto;
+  }
+  .rule.wide{ width: 92px; }
+
+  /* ---------- nav ---------- */
+  #nav{
+    position: fixed;
+    top: env(safe-area-inset-top, 0px);
+    left:0; right:0;
+    z-index: 40;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px clamp(20px, 5vw, 56px);
+    background: linear-gradient(to bottom, rgba(12,11,9,0.92), rgba(12,11,9,0.7) 70%, transparent);
+    transform: translateY(-110%);
+    transition: transform .5s cubic-bezier(.22,.61,.36,1), background .3s ease;
+    backdrop-filter: blur(6px);
+  }
+  #nav.show{ transform: translateY(0); }
+  #nav.solid{ background: rgba(12,11,9,0.92); }
+  #nav .mono{
+    font-family:"Cormorant Garamond", serif;
+    font-size: 20px;
+    letter-spacing: 0.12em;
+  }
+  #nav ul{
+    list-style:none; display:flex; gap: clamp(14px,3vw,34px);
+    margin:0; padding:0; flex-wrap:wrap;
+  }
+  #nav a{
+    font-family:"Jost", sans-serif;
+    font-size: 11.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration:none;
+    color: var(--parchment);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 3px;
+    transition: color .25s ease, border-color .25s ease;
+  }
+  #nav a:hover, #nav a:focus-visible{ color: var(--gold-bright); border-color: var(--gold-bright); }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height: 100svh;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding-top: clamp(60px, 10vh, 110px);
+    padding-bottom: clamp(120px, 17vh, 180px);
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .hero .bg{
+    position:absolute; inset:0; z-index:-2;
+    background-image: url('img/hero2.jpg');
+    background-size: cover;
+    background-position: 50% 22%;
+    animation: kenburns 28s ease-in-out infinite alternate;
+  }
+  .hero .veil{
+    position:absolute; inset:0; z-index:-1;
+    background:
+      linear-gradient(to top, rgba(8,7,6,0.94) 0%, rgba(8,7,6,0.35) 46%, rgba(8,7,6,0.35) 62%, rgba(8,7,6,0.75) 100%);
+  }
+  .hero-content{
+    text-align:center;
+    padding-inline: 20px;
+    max-width: 720px;
+  }
+  .hero-welcome{ margin-bottom: 18px; }
+  .hero h1{
+    font-size: clamp(2.6rem, 9vw, 5.6rem);
+    line-height: 1.05;
+    font-weight: 500;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--gold-bright);
+    font-weight: 400;
+    padding-inline: 0.18em;
+  }
+  .hero .meta{
+    margin-top: 26px;
+    display:flex; align-items:center; justify-content:center; gap:16px;
+    color: var(--parchment);
+    font-family:"Jost",sans-serif;
+    letter-spacing: 0.16em;
+    font-size: clamp(12px, 2vw, 14px);
+    text-transform: uppercase;
+    flex-wrap:wrap;
+  }
+  .hero .meta .dot{ color: var(--gold); }
+  .scrolldown{
+    position:absolute; bottom: clamp(20px, 4vh, 40px); left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    font-family:"Jost",sans-serif; font-size: 10.5px; letter-spacing:0.3em;
+    text-transform:uppercase; color: var(--parchment-dim);
+  }
+  .scrolldown .line{ width:1px; height:34px; background: linear-gradient(var(--gold), transparent); animation: dropline 2.4s ease-in-out infinite; }
+  @keyframes dropline{ 0%{opacity:.15; transform:scaleY(.4); transform-origin:top;} 50%{opacity:1; transform:scaleY(1); transform-origin:top;} 100%{opacity:.15; transform:scaleY(.4); transform-origin:top;} }
+  @media (prefers-reduced-motion: reduce){ .scrolldown .line{ animation:none; opacity:.6; } }
+
+  /* ---------- generic sections ---------- */
+  section{ position:relative; }
+  .band{
+    padding-block: clamp(70px, 12vh, 130px);
+  }
+  .band.dark{ background: var(--ink); }
+  .band.panel{ background: var(--panel); }
+
+  .reveal{ opacity:0; transform: translateY(22px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+
+  /* slow ambient zoom on full-bleed photography */
+  @keyframes kenburns{ 0%{ transform: scale(1); } 100%{ transform: scale(1.12); } }
+  @media (prefers-reduced-motion: reduce){ .hero .bg, .footer .bg, .break img{ animation:none !important; } }
+
+  .center{ text-align:center; }
+
+  /* details */
+  .details-grid{
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(28px, 6vw, 70px);
+    align-items:center;
+  }
+  @media (max-width: 760px){ .details-grid{ grid-template-columns: 1fr; } }
+  .details-grid figure{ margin:0; overflow:hidden; }
+  .details-grid img{ width:100%; height:100%; object-fit:cover; aspect-ratio: 4/5; filter: saturate(0.92) contrast(1.03); transition: transform 1s ease; }
+  .details-grid figure:hover img{ transform: scale(1.035); }
+
+  .datestamp{
+    font-family:"Cormorant Garamond", serif;
+    font-weight:400;
+    font-size: clamp(2.6rem, 6vw, 3.6rem);
+    letter-spacing: 0.04em;
+    color: var(--gold-bright);
+    font-variant-numeric: tabular-nums;
+  }
+  .detail-rows{ margin-top: 30px; display:flex; flex-direction:column; gap: 20px; }
+  .detail-row{
+    display:flex; justify-content:space-between; gap: 18px;
+    padding-block: 16px;
+    border-top: 1px solid var(--line);
+  }
+  .detail-row .k{
+    font-family:"Jost",sans-serif; font-size:11.5px; letter-spacing:0.22em;
+    text-transform:uppercase; color: var(--parchment-dim); white-space:nowrap; padding-top:2px;
+  }
+  .detail-row .v{ text-align:right; color: var(--parchment); font-size: 16.5px; }
+  .note{
+    margin-top: 26px; color: var(--parchment); font-size: 16px; font-style:italic;
+  }
+
+  /* rsvp */
+  .rsvp-wrap{
+    display:grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(30px,6vw,70px); align-items:stretch;
+  }
+  @media (max-width: 860px){ .rsvp-wrap{ grid-template-columns: 1fr; } }
+  .rsvp-figure{ position:relative; overflow:hidden; min-height: 320px; }
+  .rsvp-figure img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter: saturate(.9); transition: transform 1s ease; }
+  .rsvp-figure:hover img{ transform: scale(1.035); }
+  .rsvp-figure::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(12,11,9,0.05), rgba(12,11,9,0.55)); }
+
+  form#rsvpForm{ display:flex; flex-direction:column; gap: 18px; }
+  .field{ display:flex; flex-direction:column; gap:8px; }
+  .field label{
+    font-family:"Jost",sans-serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase;
+    color: var(--parchment-dim);
+  }
+  .field input, .field textarea, .field select{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line-strong);
+    color: var(--bone);
+    font-family:"EB Garamond", serif;
+    font-size: 17px;
+    padding: 9px 2px;
+    outline:none;
+    transition: border-color .25s ease;
+  }
+  .field input::placeholder, .field textarea::placeholder{ color: var(--parchment-dim); opacity:.7; }
+  .field input:focus, .field textarea:focus, .field select:focus{ border-color: var(--gold-bright); }
+  .field textarea{ resize: vertical; min-height: 64px; }
+  .row2{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 480px){ .row2{ grid-template-columns:1fr; } }
+
+  .pillgroup{ display:flex; gap:10px; flex-wrap:wrap; }
+  .pill{
+    font-family:"Jost",sans-serif; font-size: 12px; letter-spacing:0.14em; text-transform:uppercase;
+    padding: 11px 20px; border: 1px solid var(--line-strong); color: var(--parchment);
+    cursor:pointer; background:transparent; transition: all .2s ease;
+  }
+  .pill input{ display:none; }
+  .pill.active{ background: var(--gold); border-color: var(--gold); color: #17140f; }
+
+  /* personalized RSVP */
+  .rsvp-personal-intro{ color:var(--parchment); margin-top:14px; max-width:52ch; }
+  .rsvp-thankyou{ margin-top:24px; }
+  .rsvp-thankyou .thankyou-title{
+    font-family:"Cormorant Garamond", serif; font-weight:500;
+    font-size: clamp(1.7rem, 3.4vw, 2.2rem); color: var(--gold-bright);
+    margin-bottom: 10px;
+  }
+  .rsvp-thankyou .thankyou-body{ color:var(--parchment); font-size:16.5px; max-width:52ch; }
+  .rsvp-step2{ margin-top:28px; }
+  .guest-list{ display:flex; flex-direction:column; }
+  .guest-row{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding-block: 14px; border-top: 1px solid var(--line);
+  }
+  .guest-row:last-child{ border-bottom: 1px solid var(--line); }
+  .guest-row-name{ font-family:"EB Garamond", serif; font-size:17px; color:var(--bone); }
+  .guest-row .pillgroup{ flex-wrap:nowrap; }
+  .guest-row .pill{ padding:9px 16px; font-size:11px; }
+
+  select{ appearance:none; -webkit-appearance:none; }
+  .field.select-wrap{ position:relative; }
+  .field.select-wrap::after{
+    content:"▾"; position:absolute; right:4px; bottom:11px; color: var(--gold); pointer-events:none; font-size:12px;
+  }
+
+  .submit-btn{
+    margin-top: 6px;
+    align-self:flex-start;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-bright);
+    font-family:"Jost",sans-serif;
+    font-size: 12.5px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    padding: 15px 34px;
+    cursor:pointer;
+    transition: background .25s ease, color .25s ease;
+  }
+  .submit-btn:hover{ background: var(--gold); color:#17140f; }
+  .submit-btn:disabled{ opacity:.5; cursor:default; }
+
+  #rsvpStatus{
+    margin-top: 14px; font-size: 15px; color: var(--gold-bright); font-style: italic; min-height: 1.4em;
+  }
+
+  /* registry / faq */
+  .two-col{
+    display:grid; grid-template-columns: 1fr 1.3fr; gap: clamp(30px,6vw,80px);
+  }
+  @media (max-width: 760px){ .two-col{ grid-template-columns:1fr; } }
+
+  .faq-item{ border-top: 1px solid var(--line); }
+  .faq-item:last-child{ border-bottom: 1px solid var(--line); }
+  .faq-q{
+    width:100%; text-align:left; background:none; border:none; color: var(--bone);
+    font-family:"Cormorant Garamond", serif; font-size: 20px; padding: 20px 0;
+    display:flex; justify-content:space-between; align-items:center; gap: 16px; cursor:pointer;
+  }
+  .faq-q .plus{ color: var(--gold); font-family:"Jost",sans-serif; font-weight:300; font-size: 20px; transition: transform .3s ease; flex-shrink:0; }
+  .faq-item.open .faq-q .plus{ transform: rotate(45deg); }
+  .faq-a{ max-height:0; overflow:hidden; transition: max-height .4s ease; color: var(--parchment); font-size:16.5px; }
+  .faq-a p{ padding: 0 0 20px; margin:0; max-width: 56ch; }
+  .faq-item.open .faq-a{ max-height: 220px; }
+
+  /* full-bleed photo breaks */
+  .break{
+    position:relative; height: clamp(320px, 62vh, 620px); overflow:hidden;
+  }
+  .break img{ width:100%; height:100%; object-fit:cover; object-position: 50% 32%; filter: saturate(0.92); animation: kenburns 24s ease-in-out infinite alternate; }
+  .break::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(8,7,6,0.12), rgba(8,7,6,0.12) 70%, rgba(8,7,6,0.5)); }
+
+  .cal-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 12px;
+    margin-top: 22px;
+  }
+  .cal-group .btn-outline{ margin-top:0; }
+
+  .btn-outline{
+    display:inline-block;
+    margin-top: 22px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-bright);
+    font-family:"Jost",sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    text-decoration:none;
+    padding: 13px 28px;
+    transition: background .25s ease, color .25s ease;
+  }
+  .btn-outline:hover{ background: var(--gold); color:#17140f; }
+
+  /* footer */
+  .footer{
+    position:relative; min-height: 78vh; display:flex; align-items:flex-end; justify-content:center;
+    isolation:isolate; overflow:hidden;
+  }
+  .footer .bg{ position:absolute; inset:0; z-index:-2; background-image:url('img/break2.jpg'); background-size:cover; background-position: 50% 20%; animation: kenburns 30s ease-in-out infinite alternate; }
+  .footer .veil{ position:absolute; inset:0; z-index:-1; background: linear-gradient(180deg, rgba(8,7,6,0.35), rgba(8,7,6,0.55) 46%, rgba(8,7,6,0.94) 82%); }
+  .footer-content{ text-align:center; padding: 20px 20px clamp(56px, 9vh, 100px); }
+  .footer-content .mono{ font-family:"Cormorant Garamond", serif; font-size: clamp(2rem,5vw,2.8rem); letter-spacing:0.06em; }
+  .footer-content .meta{ margin-top:14px; font-family:"Jost",sans-serif; letter-spacing:0.2em; font-size:12px; text-transform:uppercase; color: var(--parchment); }
+  .footer-content .sign{ margin-top: 30px; font-family:"Cormorant Garamond", serif; font-style:italic; color: var(--parchment); font-size: 17px; }
+
+  ::selection{ background: var(--gold); color:#17140f; }
+</style>
+</head>
+<body style="margin:0;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<nav id="nav">
+  <div class="mono">A&nbsp;&amp;&nbsp;T</div>
+  <ul>
+    <li><a href="#details">Details</a></li>
+    <li><a href="#rsvp">RSVP</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div class="bg"></div>
+  <div class="veil"></div>
+  <div class="hero-content">
+    <div class="eyebrow hero-welcome" id="heroWelcome" hidden></div>
+    <h1>Ashley <em>&amp;</em> Tristan</h1>
+    <div class="meta">
+      <span>September 25, 2027</span>
+      <span class="dot">&middot;</span>
+      <span>Toronto, Ontario</span>
+    </div>
+  </div>
+  <div class="scrolldown"><span>Scroll</span><span class="line"></span></div>
+</header>
+
+<section class="band panel" id="details">
+  <div class="wrap reveal">
+    <div class="details-grid">
+      <figure><img src="img/details2.jpg" alt="Ashley and Tristan sitting together in a vintage truck at dusk"></figure>
+      <div>
+        <div class="eyebrow">The Details</div>
+        <div class="datestamp" style="margin-top:14px;">09 &middot; 25 &middot; 2027</div>
+        <div class="detail-rows">
+          <div class="detail-row"><span class="k">Ceremony</span><span class="v">To be announced</span></div>
+          <div class="detail-row"><span class="k">Reception</span><span class="v">To be announced</span></div>
+          <div class="detail-row"><span class="k">City</span><span class="v">Toronto, Ontario</span></div>
+        </div>
+        <p class="note">Formal details will follow in your invitation &mdash; for now, simply save the date. We can't wait to celebrate with you.</p>
+        <div class="cal-group">
+          <a class="btn-outline" id="calendarLinkGoogle" href="#" target="_blank" rel="noopener">Google Calendar</a>
+          <a class="btn-outline" id="calendarLinkIcs" href="#">Apple / Outlook</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="break reveal">
+  <img src="img/break1.jpg" alt="Ashley and Tristan in the back seat of a vintage truck">
+</section>
+
+<section class="band panel" id="rsvp">
+  <div class="wrap reveal">
+    <div class="rsvp-wrap">
+      <figure class="rsvp-figure"><img src="img/rsvp2.jpg" alt="Ashley and Tristan leaning out the truck window together"></figure>
+      <div>
+        <div class="eyebrow">RSVP</div>
+        <h2 style="font-size:clamp(1.9rem,4vw,2.6rem); margin-top:14px;">Let us know you'll be there</h2>
+
+        <!-- Personalized flow: shown only when the page is opened via a guest's own
+             ?guest=CODE link. Step 1 is a single yes/no for the household; once picked,
+             step 2 reveals each named guest with their own attending toggle, plus
+             address and notes. Falls back to the generic form below for anyone who
+             opens the site without a code. -->
+        <div id="rsvpPersonal" hidden>
+          <p class="rsvp-personal-intro" id="rsvpPersonalIntro"><strong id="rsvpPersonalNames"></strong>, we can't wait to celebrate with you.</p>
+
+          <div class="field" id="rsvpPersonalStep1" style="margin-top:24px;">
+            <label>Will you be joining us?</label>
+            <div class="pillgroup" id="rsvpInitialGroup">
+              <button type="button" class="pill" data-value="Joyfully accepts">Joyfully accepts</button>
+              <button type="button" class="pill" data-value="Regretfully declines">Regretfully declines</button>
+            </div>
+          </div>
+
+          <form id="rsvpPersonalForm" class="rsvp-step2" hidden>
+            <div class="field">
+              <label>Your party</label>
+              <div class="guest-list" id="rsvpGuestList"></div>
+            </div>
+
+            <div class="field">
+              <label for="pStreet">Mailing address &mdash; street</label>
+              <input id="pStreet" name="street" type="text" placeholder="123 Willow Street">
+            </div>
+
+            <div class="row2">
+              <div class="field">
+                <label for="pCity">City &amp; province/state</label>
+                <input id="pCity" name="city" type="text" placeholder="Toronto, ON">
+              </div>
+              <div class="field">
+                <label for="pPostal">Postal / ZIP code</label>
+                <input id="pPostal" name="postal" type="text" placeholder="M5V 2T6">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="pNotes">Comments</label>
+              <textarea id="pNotes" name="notes" placeholder="Well wishes, or anything you'd like to share"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Send RSVP</button>
+            <div id="rsvpPersonalStatus" role="status"></div>
+          </form>
+
+          <div class="rsvp-thankyou" id="rsvpPersonalThankYou" hidden>
+            <div class="thankyou-title">RSVP Received</div>
+            <p class="thankyou-body" id="rsvpPersonalThankYouBody">Thank you &mdash; we can't wait to celebrate with you.</p>
+          </div>
+        </div>
+
+        <!-- Generic flow: shown when there's no (or no matching) guest code. -->
+        <div id="rsvpGeneric">
+          <p style="color:var(--parchment); margin-top:14px; max-width:52ch;" id="rsvpGenericIntro">We're sending out save-the-dates now &mdash; RSVP below and confirm your mailing address so we can reach you as the details come together.</p>
+
+          <form id="rsvpForm" style="margin-top:32px;">
+            <div class="row2">
+              <div class="field">
+                <label for="fullName">Full name</label>
+                <input id="fullName" name="fullName" type="text" placeholder="Jane Doe" required>
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="jane@email.com" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Will you be joining us?</label>
+              <div class="pillgroup" id="attendGroup">
+                <label class="pill active" data-value="Joyfully accepts"><input type="radio" name="attending" value="Joyfully accepts" checked>Joyfully accepts</label>
+                <label class="pill" data-value="Regretfully declines"><input type="radio" name="attending" value="Regretfully declines">Regretfully declines</label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="party">Who's celebrating with you?</label>
+              <input id="party" name="party" type="text" placeholder="Just me, or list any guests joining you by name">
+            </div>
+
+            <div class="field">
+              <label for="street">Mailing address &mdash; street</label>
+              <input id="street" name="street" type="text" placeholder="123 Willow Street">
+            </div>
+
+            <div class="row2">
+              <div class="field">
+                <label for="city">City &amp; province/state</label>
+                <input id="city" name="city" type="text" placeholder="Toronto, ON">
+              </div>
+              <div class="field">
+                <label for="postal">Postal / ZIP code</label>
+                <input id="postal" name="postal" type="text" placeholder="M5V 2T6">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="notes">Comments</label>
+              <textarea id="notes" name="notes" placeholder="Well wishes, or anything you'd like to share"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Send RSVP</button>
+            <div id="rsvpStatus" role="status"></div>
+          </form>
+
+          <div class="rsvp-thankyou" id="rsvpGenericThankYou" hidden>
+            <div class="thankyou-title">RSVP Received</div>
+            <p class="thankyou-body" id="rsvpGenericThankYouBody">Thank you &mdash; we can't wait to celebrate with you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band panel" id="faq">
+  <div class="wrap reveal">
+    <div class="two-col">
+      <div>
+        <div class="eyebrow">Good to Know</div>
+        <h2 style="font-size:clamp(1.9rem,4vw,2.4rem); margin-top:14px;">Frequently asked</h2>
+      </div>
+      <div>
+        <div class="faq-item open">
+          <button class="faq-q" aria-expanded="true">When is the wedding? <span class="plus">+</span></button>
+          <div class="faq-a"><p>September 25, 2027, in Toronto, Ontario. A formal invitation with the ceremony and reception details will follow.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Will this site be updated? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes &mdash; bookmark this page. We'll keep it current with venue, schedule, and travel information as the date gets closer.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Who do I contact with questions? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Reach us any time at <a href="mailto:hello@ashleyandtristan.com" style="color:var(--gold-bright);">hello@ashleyandtristan.com</a>.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="bg"></div>
+  <div class="veil"></div>
+  <div class="footer-content">
+    <div class="rule wide" style="margin-bottom:20px;"></div>
+    <div class="mono">Ashley &amp; Tristan</div>
+    <div class="meta">September 25 &middot; 2027 &middot; Toronto, Ontario</div>
+    <div class="sign">With love, we can't wait to celebrate with you.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Personalized invitations — each entry is one household/party, keyed by
+  // the short code used in that household's link (yoursite.com/?guest=CODE).
+  // "greeting" shows at the top of the page; "guests" is the list of named
+  // people in that party — each one gets their own attending toggle in the
+  // RSVP section once the guest picks an initial yes/no.
+  var GUESTS = {
+    'tristanashley': { greeting: 'Welcome, Tristan & Ashley (test)', guests: ['Tristan Iemsisanith', 'Ashley Mete'] },
+    'abbyroberts': { greeting: 'Welcome, Abby & Parker', guests: ['Abby Roberts', 'Parker Baile'] },
+    'arielleshirah': { greeting: 'Welcome, Arielle & Nick', guests: ['Arielle Shirah', 'Nick Scott'] },
+    'armitaraouf': { greeting: 'Welcome, Armita & Ryan', guests: ['Armita Raouf', 'Ryan McGolrick'] },
+    'ericabarnes': { greeting: 'Welcome, Erica', guests: ['Erica Barnes'] },
+    'franchesca': { greeting: 'Welcome, Franchesca & Tomislav', guests: ['Franchesca', 'Tomislav Simanic'] },
+    'hannahbegna': { greeting: 'Welcome, Hannah & Luke', guests: ['Hannah Begna', 'Luke Gregoris'] },
+    'hannahgander': { greeting: 'Welcome, Hannah', guests: ['Hannah Gander'] },
+    'hannahmccann': { greeting: 'Welcome, Hannah & Sean', guests: ['Hannah McCann', 'Sean Mcfall'] },
+    'jennacampbell': { greeting: 'Welcome, Jenna & Quentin', guests: ['Jenna Campbell', 'Quentin Campbell'] },
+    'jessestellick': { greeting: 'Welcome, Jesse & Owen', guests: ['Jesse Stellick', 'Owen Petter'] },
+    'katewhite': { greeting: 'Welcome, Kate & Robert', guests: ['Kate White', 'Robert Stokes'] },
+    'lauraspittle': { greeting: 'Welcome, Laura & Jake', guests: ['Laura Spittle', 'Jake Potter'] },
+    'laurenschilter': { greeting: 'Welcome, Lauren & Jonny', guests: ['Lauren Schilter', 'Jonny Ames'] },
+    'limeimayer': { greeting: 'Welcome, Li-Mei & Brandon', guests: ['Li-Mei Mayer', 'Brandon Petter'] },
+    'madinardella': { greeting: 'Welcome, Madi & Evin', guests: ['Madi Nardella', 'Evin Jennings'] },
+    'mahashaher': { greeting: 'Welcome, Maha & Nic', guests: ['Maha Shaher', 'Nic Del Zotto'] },
+    'meganpittman': { greeting: 'Welcome, Megan & Ryan', guests: ['Megan Pittman', 'Ryan Pittman'] },
+    'miyastrauss': { greeting: 'Welcome, Miya & Keith', guests: ['Miya Strauss', 'Keith Jarvis'] },
+    'nicolejackson': { greeting: 'Welcome, Nicole & Evan', guests: ['Nicole Jackson', 'Evan Jackson'] },
+    'paigemiddleton': { greeting: 'Welcome, Paige & Claudio', guests: ['Paige Middleton', 'Claudio Corsi'] },
+    'saraground': { greeting: 'Welcome, Sara & Alec', guests: ['Sara Ground', 'Alec Ground'] },
+    'saynaashton': { greeting: 'Welcome, Sayna & Ben', guests: ['Sayna Ashton', 'Ben Ashton'] },
+    'sheighrowe': { greeting: 'Welcome, Sheigh & Tyler', guests: ['Sheigh Rowe', 'Tyler Hindley'] },
+    'shonapollice': { greeting: 'Welcome, Shona & Michael', guests: ['Shona Pollice', 'Michael Pollice'] },
+    'sidneymoutrey': { greeting: 'Welcome, Sidney & Nick', guests: ['Sidney Moutrey', 'Nick Moutrey'] },
+    'stefanielondero': { greeting: 'Welcome, Stefanie & Austin', guests: ['Stefanie Londero', 'Austin Naoum'] },
+    'stepholejnik': { greeting: 'Welcome, Steph & Greg', guests: ['Steph Olejnik', 'Greg Olejnik'] },
+    'sydneycobbold': { greeting: 'Welcome, Sydney & Connor', guests: ['Sydney Cobbold', 'Connor Douglas'] },
+    'daynamikkelsen': { greeting: 'Welcome, Dayna', guests: ['Dayna Mikkelsen'] },
+    'connorcowl': { greeting: 'Welcome, Connor', guests: ['Connor Cowl'] },
+    'jakeallen': { greeting: 'Welcome, Jake', guests: ['Jake Allen'] },
+    'jamesstanley': { greeting: 'Welcome, James', guests: ['James Stanley'] },
+    'joelgouveia': { greeting: 'Welcome, Joel', guests: ['Joel Gouveia'] },
+    'konnermcmillan': { greeting: 'Welcome, Konner', guests: ['Konner McMillan'] },
+    'liamcoll': { greeting: 'Welcome, Liam', guests: ['Liam Coll'] },
+    'noahdelmas': { greeting: 'Welcome, Noah', guests: ['Noah Delmas'] },
+    'ryanmanson': { greeting: 'Welcome, Ryan', guests: ['Ryan Manson'] },
+    'spencergreen': { greeting: 'Welcome, Spencer', guests: ['Spencer Green'] },
+    'braydenbeswick': { greeting: 'Welcome, Brayden', guests: ['Brayden Beswick'] },
+    'neilduggan': { greeting: 'Welcome, Neil', guests: ['Neil Duggan'] },
+    'souphaninethoneiemsisanith': { greeting: 'Welcome, Souphaninethone & Saythong', guests: ['Souphaninethone Iemsisanith', 'Saythong Iemsisanith'] },
+    'aeryssiemsisanith': { greeting: 'Welcome, Aeryss & Deyvonte', guests: ['Aeryss Iemsisanith', 'Deyvonte Gludd'] },
+    'shaelynneiemsisanith': { greeting: 'Welcome, Shaelynne & Pierre', guests: ['Shaelynne Iemsisanith', 'Pierre Belliveau'] },
+    'grandma': { greeting: 'Welcome, Grandma', guests: ['Grandma'] },
+    'noyiemsisanith': { greeting: 'Welcome, Noy, Saykham, Katelynn, Sofia & Izzy', guests: ['Noy Iemsisanith', 'Saykham Iemsisanith', 'Katelynn Iemsisanith', 'Sofia Iemsisanith', 'Izzy Iemsisanith'] },
+    'jamiewendell': { greeting: 'Welcome, Jamie & Chanthakumane', guests: ['Jamie Wendell', 'Chanthakumane Iemsisanith'] },
+    'andrewiemsisanith': { greeting: 'Welcome, Andrew', guests: ['Andrew Iemsisanith'] },
+    'alexiemsisanith': { greeting: 'Welcome, Alex', guests: ['Alex Iemsisanith'] },
+    'tinaiemsisanith': { greeting: 'Welcome, Tina & Chanthala', guests: ['Tina Iemsisanith', 'Chanthala Iemsisanith'] },
+    'khonsavanhpantaleo': { greeting: 'Welcome, Khonsavanh', guests: ['Khonsavanh Pantaleo'] },
+    'souphaphonekhamsivone': { greeting: 'Welcome, Souphaphone', guests: ['Souphaphone Khamsivone'] },
+    'rasmykhamsivone': { greeting: 'Welcome, Rasmy', guests: ['Rasmy Khamsivone'] },
+    'thongkiengsavinagging': { greeting: 'Welcome, Thongkieng & Meridone', guests: ['Thongkieng Savinagging', 'Meridone Khamsivone'] },
+    'leangnam': { greeting: 'Welcome, Leang & Jonathan', guests: ['Leang Nam', 'Jonathan Khamsivone'] },
+    'sabinedodane': { greeting: 'Welcome, Sabine & Seng', guests: ['Sabine Dodane', 'Seng Douangdara'] },
+    'dejawoodson': { greeting: 'Welcome, Deja & Anthony', guests: ['Deja Woodson', 'Anthony Douangdara'] },
+    'conniefry': { greeting: 'Welcome, Connie', guests: ['Connie Fry'] },
+    'palinaphimprachanh': { greeting: 'Welcome, Palina & Dia', guests: ['Palina Phimprachanh', 'Dia Phimprachanh'] },
+    'brandonphimprachanh': { greeting: 'Welcome, Brandon & Lindsay', guests: ['Brandon Phimprachanh', 'Lindsay Withers'] },
+    'christinakhamsivone': { greeting: 'Welcome, Christina', guests: ['Christina Khamsivone'] },
+    'auntrosie': { greeting: 'Welcome, Aunt Rosie', guests: ['Aunt Rosie'] },
+    'dawnduncan': { greeting: 'Welcome, Dawn & Pat', guests: ['Dawn Duncan', 'Pat Mete'] },
+    'stephaniemete': { greeting: 'Welcome, Stephanie & Jesse', guests: ['Stephanie Mete', 'Jesse Kidman'] },
+    'joshuamete': { greeting: 'Welcome, Joshua', guests: ['Joshua Mete'] },
+    'ruthann': { greeting: 'Welcome, Ruthann & Jim', guests: ['Ruthann', 'Jim Mete'] },
+    'donnamete': { greeting: 'Welcome, Donna & Tony', guests: ['Donna Mete', 'Tony Mete'] },
+    'rosemarymete': { greeting: 'Welcome, Rosemary & Gordie', guests: ['Rosemary Mete', 'Gordie Cooper'] },
+    'nicolemete': { greeting: 'Welcome, Nicole & Austin', guests: ['Nicole Mete', 'Austin Ziegler'] },
+    'bayleemete': { greeting: 'Welcome, Baylee & Aaron', guests: ['Baylee Mete', 'Aaron Mete'] },
+    'nataliereynolds': { greeting: 'Welcome, Natalie & Frank', guests: ['Natalie Reynolds', 'Frank Mete'] },
+    'teresadinardo': { greeting: 'Welcome, Teresa & Mario', guests: ['Teresa Dinardo', 'Mario Dinardo'] },
+    'marybaron': { greeting: 'Welcome, Mary & Mike', guests: ['Mary Baron', 'Mike Baron'] },
+    'emilyocchicone': { greeting: 'Welcome, Emily & Pat', guests: ['Emily Occhicone', 'Pat Occhicone'] },
+    'tonymete': { greeting: 'Welcome, Tony', guests: ['Tony Mete'] },
+    'mikemete': { greeting: 'Welcome, Mike', guests: ['Mike Mete'] },
+    'wendymete': { greeting: 'Welcome, Wendy & Tom', guests: ['Wendy Mete', 'Tom Hegenauer'] },
+    'sandraweir': { greeting: 'Welcome, Sandra & Ken', guests: ['Sandra Weir', 'Ken Weir'] },
+    'kimhull': { greeting: 'Welcome, Kim & Mark', guests: ['Kim Hull', 'Mark Gregory'] },
+    'kayladoxtater': { greeting: 'Welcome, Kayla & Matt', guests: ['Kayla Doxtater', 'Matt Doxtater'] },
+    'christinaestrein': { greeting: 'Welcome, Christina & Dave', guests: ['Christina Estrein', 'Dave Estrein'] },
+    'lynnepepper': { greeting: 'Welcome, Lynne & Garth', guests: ['Lynne Pepper', 'Garth Pepper'] },
+    'nellielindner': { greeting: 'Welcome, Nellie & Daniel', guests: ['Nellie Lindner', 'Daniel Arsenault'] },
+    'leannebrain': { greeting: 'Welcome, Leanne & Robert', guests: ['Leanne Brain', 'Robert Brain'] },
+    'kimberlypurtell': { greeting: 'Welcome, Kimberly', guests: ['Kimberly Purtell'] },
+    'tammysmith': { greeting: 'Welcome, Tammy & Steve', guests: ['Tammy Smith', 'Steve Smith'] },
+    'lynnehegenauer': { greeting: 'Welcome, Lynne & Mark', guests: ['Lynne Hegenauer', 'Mark Hegenauer'] },
+    'tammyweirkyriakoulias': { greeting: 'Welcome, Tammy, Dimitria & Colton', guests: ['Tammy Weir-Kyriakoulias', 'Dimitria Kyriakoulias', 'Colton Kyriakoulias'] },
+    'brittanyhegenauer': { greeting: 'Welcome, Brittany', guests: ['Brittany Hegenauer'] },
+    'gerlindaferling': { greeting: 'Welcome, Gerlinda', guests: ['Gerlinda Ferling'] },
+    'heathanderson': { greeting: 'Welcome, Heath', guests: ['Heath Anderson'] },
+    'lindaanderson': { greeting: 'Welcome, Linda', guests: ['Linda Anderson'] },
+    'russellanderson': { greeting: 'Welcome, Russell, Roy & Jarrod', guests: ['Russell Anderson', 'Roy Anderson', 'Jarrod Anderson'] }
+  };
+
+  var activeGuest = null;
+
+  try{
+    var guestCode = new URLSearchParams(window.location.search).get('guest');
+    activeGuest = guestCode && GUESTS[guestCode.toLowerCase()];
+  }catch(err){ activeGuest = null; }
+
+  if(activeGuest){
+    var welcomeEl = document.getElementById('heroWelcome');
+    if(welcomeEl && activeGuest.greeting){
+      welcomeEl.textContent = activeGuest.greeting;
+      welcomeEl.hidden = false;
+    }
+
+    // Swap the generic RSVP form out for the personalized flow.
+    var genericWrap = document.getElementById('rsvpGeneric');
+    var personalWrap = document.getElementById('rsvpPersonal');
+    if(genericWrap) genericWrap.hidden = true;
+    if(personalWrap) personalWrap.hidden = false;
+
+    var namesEl = document.getElementById('rsvpPersonalNames');
+    if(namesEl){
+      var names = activeGuest.guests || [];
+      namesEl.textContent = names.length > 1
+        ? names.slice(0, -1).join(', ') + ' & ' + names[names.length - 1]
+        : (names[0] || '');
+    }
+
+    // Build one row per named guest, each with its own attending toggle.
+    var guestListEl = document.getElementById('rsvpGuestList');
+    if(guestListEl){
+      (activeGuest.guests || []).forEach(function(personName){
+        var row = document.createElement('div');
+        row.className = 'guest-row';
+
+        var nameSpan = document.createElement('span');
+        nameSpan.className = 'guest-row-name';
+        nameSpan.textContent = personName;
+        row.appendChild(nameSpan);
+
+        var group = document.createElement('div');
+        group.className = 'pillgroup';
+        group.setAttribute('data-guest-name', personName);
+
+        var yesBtn = document.createElement('button');
+        yesBtn.type = 'button';
+        yesBtn.className = 'pill';
+        yesBtn.setAttribute('data-value', 'Attending');
+        yesBtn.textContent = 'Attending';
+
+        var noBtn = document.createElement('button');
+        noBtn.type = 'button';
+        noBtn.className = 'pill';
+        noBtn.setAttribute('data-value', 'Not attending');
+        noBtn.textContent = 'Not attending';
+
+        [yesBtn, noBtn].forEach(function(btn){
+          btn.addEventListener('click', function(){
+            group.querySelectorAll('.pill').forEach(function(x){ x.classList.remove('active'); });
+            btn.classList.add('active');
+          });
+        });
+
+        group.appendChild(yesBtn);
+        group.appendChild(noBtn);
+        row.appendChild(group);
+        guestListEl.appendChild(row);
+      });
+    }
+
+    // Step 1: a single yes/no for the whole party. Picking one sets every
+    // guest row to match as a starting point (still editable per person),
+    // then reveals the rest of the form.
+    var initialGroup = document.getElementById('rsvpInitialGroup');
+    var personalForm = document.getElementById('rsvpPersonalForm');
+    if(initialGroup && personalForm){
+      initialGroup.querySelectorAll('.pill').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          initialGroup.querySelectorAll('.pill').forEach(function(x){ x.classList.remove('active'); });
+          btn.classList.add('active');
+          var isYes = btn.getAttribute('data-value') === 'Joyfully accepts';
+          if(guestListEl){
+            guestListEl.querySelectorAll('.guest-row .pillgroup').forEach(function(g){
+              g.querySelectorAll('.pill').forEach(function(p){ p.classList.remove('active'); });
+              var match = g.querySelector('.pill[data-value="' + (isYes ? 'Attending' : 'Not attending') + '"]');
+              if(match) match.classList.add('active');
+            });
+          }
+          personalForm.hidden = false;
+          personalForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    }
+  }
+
+  // nav show/hide
+  var nav = document.getElementById('nav');
+  var hero = document.getElementById('top');
+  function onScroll(){
+    var past = window.scrollY > (hero.offsetHeight * 0.82);
+    nav.classList.toggle('show', past);
+    nav.classList.toggle('solid', window.scrollY > hero.offsetHeight);
+  }
+  document.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  // reveal on scroll
+  try{
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduce && 'IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.16 });
+      document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+    }
+  }catch(err){
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // attending pill toggle
+  var pills = document.querySelectorAll('#attendGroup .pill');
+  pills.forEach(function(p){
+    p.addEventListener('click', function(){
+      pills.forEach(function(x){ x.classList.remove('active'); });
+      p.classList.add('active');
+    });
+  });
+
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var btn = item.querySelector('.faq-q');
+    btn.addEventListener('click', function(){
+      var willOpen = !item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i){
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+      });
+      if(willOpen){
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+
+  // add to calendar — an all-day hold for now; update the time and
+  // location once the venue is confirmed
+  var EVENT_TITLE = 'Ashley & Tristan’s Wedding';
+  var EVENT_DETAILS = 'Save the date for Ashley and Tristan’s wedding. Ceremony and reception details to follow.';
+  var EVENT_LOCATION = 'Toronto, Ontario';
+  var EVENT_START = '20270925';
+  var EVENT_END = '20270926';
+
+  var calGoogle = document.getElementById('calendarLinkGoogle');
+  if(calGoogle){
+    var calParams = new URLSearchParams({
+      action: 'TEMPLATE',
+      text: EVENT_TITLE,
+      dates: EVENT_START + '/' + EVENT_END,
+      details: EVENT_DETAILS,
+      location: EVENT_LOCATION
+    });
+    calGoogle.href = 'https://calendar.google.com/calendar/render?' + calParams.toString();
+  }
+
+  // Apple Calendar and Outlook both read the standard .ics format. Blob +
+  // object-URL downloads are unreliable on Safari/iOS (the tap can silently
+  // do nothing), so this builds the file as a data: URI instead and sets
+  // it directly as the link's href — the cross-browser-safe way to trigger
+  // "Add to Calendar" on iOS as well as desktop. (Note: a page's own
+  // download links don't fire inside Claude's artifact preview sandbox —
+  // this works once the site is hosted for real, e.g. on GitHub Pages.)
+  var calIcs = document.getElementById('calendarLinkIcs');
+  if(calIcs){
+    var icsEscape = function(s){
+      return String(s).replace(/\\/g, '\\\\').replace(/,/g, '\\,').replace(/;/g, '\\;').replace(/\n/g, '\\n');
+    };
+    var stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    var ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Ashley and Tristan//Wedding//EN',
+      'CALSCALE:GREGORIAN',
+      'BEGIN:VEVENT',
+      'UID:ashley-tristan-wedding-2027@savethedate',
+      'DTSTAMP:' + stamp,
+      'DTSTART;VALUE=DATE:' + EVENT_START,
+      'DTEND;VALUE=DATE:' + EVENT_END,
+      'SUMMARY:' + icsEscape(EVENT_TITLE),
+      'DESCRIPTION:' + icsEscape(EVENT_DETAILS),
+      'LOCATION:' + icsEscape(EVENT_LOCATION),
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+    calIcs.setAttribute('href', 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics));
+    calIcs.setAttribute('download', 'ashley-and-tristan-wedding.ics');
+  }
+
+  // RSVP -> saved straight to Supabase (so every response lands in one
+  // place instead of relying on each guest's email app). Fill these in
+  // once your Supabase project exists — Project Settings > API.
+  var SUPABASE_URL = 'https://jxymtdbwknnwrjgbsdju.supabase.co';
+  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp4eW10ZGJ3a25ud3JqZ2JzZGp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwNzIzNzEsImV4cCI6MjEwNzY0ODM3MX0.k_ps_zqoGbJU46i3dGxIvNTCbOavrWnddKEekLJN8Q8';
+
+  // Calls a database function (not the table directly) that inserts a new
+  // RSVP or amends the existing one — matched by guest_code for a
+  // personalized link, or by email for the generic form — so a second
+  // submission updates instead of duplicating.
+  function submitRsvp(payload){
+    return fetch(SUPABASE_URL + '/rest/v1/rpc/submit_rsvp', {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ payload: payload })
+    }).then(function(res){ return res.ok; }).catch(function(){ return false; });
+  }
+
+  var form = document.getElementById('rsvpForm');
+  var status = document.getElementById('rsvpStatus');
+  var formBtn = form.querySelector('.submit-btn');
+  var genericIntro = document.getElementById('rsvpGenericIntro');
+  var genericThankYou = document.getElementById('rsvpGenericThankYou');
+  var genericThankYouBody = document.getElementById('rsvpGenericThankYouBody');
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var data = new FormData(form);
+    var name = (data.get('fullName') || '').toString().trim();
+    var email = (data.get('email') || '').toString().trim().toLowerCase();
+    if(!name || !email){
+      status.textContent = 'Please add your name and email so we can find your invitation.';
+      return;
+    }
+    var attending = data.get('attending') || 'Joyfully accepts';
+    var street = (data.get('street') || '').toString();
+    var city = (data.get('city') || '').toString();
+    var postal = (data.get('postal') || '').toString();
+    var notes = (data.get('notes') || '').toString();
+    var party = (data.get('party') || '').toString();
+
+    formBtn.disabled = true;
+    status.textContent = 'Sending your RSVP…';
+    submitRsvp({
+      source: 'generic',
+      full_name: name,
+      email: email,
+      overall_response: attending,
+      party: party,
+      street: street,
+      city: city,
+      postal: postal,
+      notes: notes,
+      updated_at: new Date().toISOString()
+    }).then(function(ok){
+      formBtn.disabled = false;
+      if(ok){
+        genericThankYouBody.textContent = 'Thank you, ' + name.split(' ')[0] + " — we can't wait to celebrate with you.";
+        if(genericIntro) genericIntro.hidden = true;
+        form.hidden = true;
+        genericThankYou.hidden = false;
+        return;
+      }
+      status.textContent = "Something went wrong sending that — please check your connection and try again.";
+    });
+  });
+
+  // Personalized RSVP -> saved to Supabase, one entry per named guest with
+  // their own attending/not-attending status.
+  var personalFormEl = document.getElementById('rsvpPersonalForm');
+  var personalStatus = document.getElementById('rsvpPersonalStatus');
+  var personalIntro = document.getElementById('rsvpPersonalIntro');
+  var personalStep1 = document.getElementById('rsvpPersonalStep1');
+  var personalThankYou = document.getElementById('rsvpPersonalThankYou');
+  var personalThankYouBody = document.getElementById('rsvpPersonalThankYouBody');
+  if(personalFormEl){
+    var personalBtn = personalFormEl.querySelector('.submit-btn');
+    personalFormEl.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var data = new FormData(personalFormEl);
+      var guestsArr = [];
+      var anyYes = false;
+      document.querySelectorAll('#rsvpGuestList .guest-row').forEach(function(row){
+        var personName = row.querySelector('.guest-row-name').textContent;
+        var activePill = row.querySelector('.pill.active');
+        var guestStatus = activePill ? activePill.getAttribute('data-value') : 'No response yet';
+        if(guestStatus === 'Attending') anyYes = true;
+        guestsArr.push({ name: personName, status: guestStatus });
+      });
+      var householdName = activeGuest && activeGuest.guests ? activeGuest.guests.join(' & ') : 'guest';
+      var street = (data.get('street') || '').toString();
+      var city = (data.get('city') || '').toString();
+      var postal = (data.get('postal') || '').toString();
+      var notes = (data.get('notes') || '').toString();
+
+      personalBtn.disabled = true;
+      personalStatus.textContent = 'Sending your RSVP…';
+      submitRsvp({
+        source: 'personal',
+        guest_code: guestCode || null,
+        household: householdName,
+        guests: guestsArr,
+        overall_response: anyYes ? 'Attending' : 'Not attending',
+        street: street,
+        city: city,
+        postal: postal,
+        notes: notes,
+        updated_at: new Date().toISOString()
+      }).then(function(ok){
+        personalBtn.disabled = false;
+        if(ok){
+          personalThankYouBody.textContent = "Thank you — we can't wait to celebrate with you.";
+          if(personalIntro) personalIntro.hidden = true;
+          if(personalStep1) personalStep1.hidden = true;
+          personalFormEl.hidden = true;
+          personalThankYou.hidden = false;
+          return;
+        }
+        personalStatus.textContent = "Something went wrong sending that — please check your connection and try again.";
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
