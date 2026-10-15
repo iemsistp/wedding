@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Ashley and Tristan//Wedding//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:ashley-tristan-wedding-2027@savethedate
+DTSTAMP:20261014T000000Z
+DTSTART;VALUE=DATE:20270925
+DTEND;VALUE=DATE:20270926
+SUMMARY:Ashley & Tristan's Wedding
+DESCRIPTION:Save the date for Ashley and Tristan's wedding. Ceremony and reception details to follow.
+LOCATION:Toronto\, Ontario
+END:VEVENT
+END:VCALENDAR
